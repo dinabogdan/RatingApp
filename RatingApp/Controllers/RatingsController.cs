@@ -30,7 +30,7 @@ namespace RatingApp.Controllers
         }
 
         [HttpPost]
-        public void AddRating([FromBody] RatingDao rating)
+        public void AddRating([FromBody] RatingDto rating)
         {
             var newRating = new Rating { ProductId = rating.ProductId, Value = rating.Value, CreatedAt = new DateTime() };
 
