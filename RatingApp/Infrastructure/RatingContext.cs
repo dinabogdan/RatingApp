@@ -1,18 +1,17 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using RatingApp.Infrastructure.Database.Model;
 
 #nullable disable
 
-namespace RatingApp
+namespace RatingApp.Infrastructure.Database
 {
-    public partial class postgresContext : DbContext
+    public partial class RatingContext : DbContext
     {
-        public postgresContext()
+        public RatingContext()
         {
         }
 
-        public postgresContext(DbContextOptions<postgresContext> options)
+        public RatingContext(DbContextOptions<RatingContext> options)
             : base(options)
         {
         }

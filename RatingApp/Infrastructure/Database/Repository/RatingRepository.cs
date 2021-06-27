@@ -1,15 +1,14 @@
-﻿using System;
+﻿using RatingApp.Infrastructure.Database.Model;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace RatingApp.Infrastructure.Database.Repository
 {
     public class RatingRepository : IRatingRepository
     {
-        private readonly postgresContext _ratingContext;
+        private readonly RatingContext _ratingContext;
 
-        public RatingRepository(postgresContext ratingContext)
+        public RatingRepository(RatingContext ratingContext)
         {
             _ratingContext = ratingContext;
         }

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 
 #nullable disable
 
-namespace RatingApp
+namespace RatingApp.Infrastructure.Database.Model
 {
     public partial class Rating
     {
