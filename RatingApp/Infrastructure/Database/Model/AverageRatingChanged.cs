@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RatingApp.Infrastructure.Database.Repository
+namespace RatingApp.Infrastructure.Database.Model
 {
     public class AverageRatingChanged
     {

@@ -1,10 +1,8 @@
-﻿using RatingApp.Controllers;
-using RatingApp.Infrastructure.Database.Model;
+﻿using RatingApp.Infrastructure.Database.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RatingApp.Infrastructure.Database.Repository
 {
