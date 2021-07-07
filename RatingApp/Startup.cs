@@ -6,7 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using RatingApp.Infrastructure.Database;
+using RatingApp.Infrastructure.Database.Model;
 using RatingApp.Infrastructure.Database.Repository;
+using RatingApp.Services;
 
 namespace RatingApp
 {
@@ -24,13 +26,11 @@ namespace RatingApp
         {
 
             services.AddDbContext<RatingContext>(options => options.UseNpgsql(Configuration.GetConnectionString("PgConnection")));
-            services.AddScoped<IRatingRepository, RatingRepository>();
+            services.AddScoped<IRatingService, RatingService>();
+            services.AddScoped<IRatingRepository, OutboxedRatingRepository>();
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "RatingApp", Version = "v1" });
-            });
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "RatingApp", Version = "v1" }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

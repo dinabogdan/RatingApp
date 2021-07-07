@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using RatingApp.Infrastructure.Database.Model;
-using RatingApp.Infrastructure.Database.Repository;
-using System;
-using System.Collections.Generic;
+using RatingApp.Services;
 
 namespace RatingApp.Controllers
 {
@@ -11,35 +7,20 @@ namespace RatingApp.Controllers
     [Route("api/[controller]")]
     public class RatingsController : ControllerBase
     {
+        private readonly IRatingService _ratingService;
 
-        private readonly ILogger<RatingsController> _logger;
-        private readonly IRatingRepository _ratingRepository;
-
-        public RatingsController(ILogger<RatingsController> logger,
-            IRatingRepository ratingRepository)
+        public RatingsController(IRatingService ratingService)
         {
-            _logger = logger;
-            _ratingRepository = ratingRepository;
-        }
-
-        [HttpGet]
-        public ActionResult<string> HelloWorld()
-        {
-            return "Hello world";
+            _ratingService = ratingService;
         }
 
         [HttpPost]
-        public void AddRating([FromBody] RatingDto rating)
-        {
-            var newRating = new Rating { ProductId = rating.ProductId, Value = rating.Value, CreatedAt = new DateTime() };
-
-            _ratingRepository.Add(newRating);
-        }
+        public void AddRating([FromBody] RatingDto rating) => _ratingService.SaveRating(rating);
 
         [HttpGet("{productId}")]
-        public IEnumerable<Rating> Get(string productId)
+        public ActionResult<AverageRatingDto> Get(string productId)
         {
-            return _ratingRepository.FindProductRatings(productId);
+            return _ratingService.CalculateAverageRatingForProduct(productId);
         }
     }
 }
